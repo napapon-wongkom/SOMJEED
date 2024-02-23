@@ -41,12 +41,6 @@ void RGB_BEEP(int r_pin,int g_pin,int b_pin){
       g_color = 0;
       b_color = 0;
     }
-    // if(digitalRead(g_pin) == 0){
-    //   g_color = 200;
-    // }else{
-    //   g_color = 0;
-    // }
-    // Serial.println(analogRead(R1));
     analogWrite(r_pin,r_color);
     analogWrite(g_pin,g_color);
     analogWrite(b_pin,b_color);
