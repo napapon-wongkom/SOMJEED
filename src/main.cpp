@@ -1,5 +1,6 @@
 #include <Arduino.h>
-#include <TimerOne.h>
+#include <TimerOne.h>  //Library
+//////////////Change Pin Here/////////////////////
 #define R1 12
 #define G1 13
 #define B1 14
@@ -69,7 +70,7 @@ void RGB_GREEN(int r_pin ,int g_pin,int b_pin){
   analogWrite(g_pin,255);
   analogWrite(b_pin,0);
 }
-
+/////////////////////MAIN_FUNCTION/////////////////////
 void MAIN_FUNC(){
   // Serial.println("TEST_MAIN");
   if(state == 1){
@@ -124,7 +125,7 @@ void MAIN_FUNC(){
       state = 6;
     }
   }
-  ///////////////////////////
+  ///////////RGB_BLINK_STATE////////////////
   if(state == 1){
     RGB_BEEP(R1,G1,B1);
   }else if(state == 2){
@@ -136,7 +137,7 @@ void MAIN_FUNC(){
   }else if(state == 5){
     RGB_BEEP(R5,G5,B5);
   }
-
+  /////////////RESET_STATE////////////////////////
   if(reset_state == 1){
     asm volatile ("  jmp 0");  //asm volatile ("  jmp 0");   if use in mega
   }
@@ -171,6 +172,7 @@ void setup() {
   attachInterrupt(ButtonN,BUTTON2,HIGH);
   attachInterrupt(Reset_Button,RESET,HIGH);
 /////////////////////MAIN//////////////////////////////
+////////////////TIMER///////////////
   Timer1.initialize(500000);
   Timer1.attachInterrupt(MAIN_FUNC);
   Timer1.start();
@@ -178,6 +180,7 @@ void setup() {
 }
 
 void loop() {
+  ///debug checker
   Serial.print("State: ");
   Serial.println(state);
   // Serial.print("Button State: ");
